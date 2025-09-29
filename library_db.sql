@@ -1,0 +1,138 @@
+-- Create database
+CREATE DATABASE IF NOT EXISTS LibraryDB;
+USE LibraryDB;
+
+-- Authors table
+CREATE TABLE IF NOT EXISTS Authors (
+    AuthorID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Bio TEXT
+);
+
+-- Books table
+CREATE TABLE IF NOT EXISTS Books (
+    BookID INT AUTO_INCREMENT PRIMARY KEY,
+    Title VARCHAR(200) NOT NULL,
+    ISBN VARCHAR(20) UNIQUE NOT NULL,
+    PublishedYear YEAR
+);
+
+-- BookAuthors table (Many-to-Many relationship)
+-- Create database
+CREATE DATABASE IF NOT EXISTS LibraryDB;
+USE LibraryDB;
+
+-- Authors table
+CREATE TABLE IF NOT EXISTS Authors (
+    AuthorID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Bio TEXT
+);
+
+-- Books table
+CREATE TABLE IF NOT EXISTS Books (
+    BookID INT AUTO_INCREMENT PRIMARY KEY,
+    Title VARCHAR(200) NOT NULL,
+    ISBN VARCHAR(20) UNIQUE NOT NULL,
+    PublishedYear YEAR
+);
+
+-- BookAuthors table (Many-to-Many relationship)
+CREATE TABLE IF NOT EXISTS BookAuthors (
+    BookID INT,
+    AuthorID INT,
+    PRIMARY KEY (BookID, AuthorID),
+    FOREIGN KEY (BookID) REFERENCES Books(BookID) ON DELETE CASCADE,
+    FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID) ON DELETE CASCADE
+);
+
+-- Members table
+CREATE TABLE IF NOT EXISTS Members (
+    MemberID INT AUTO_INCREMENT PRIMARY KEY,
+    FullName VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    JoinDate DATE NOT NULL
+);
+
+-- Loans table
+CREATE TABLE IF NOT EXISTS Loans (
+    LoanID INT AUTO_INCREMENT PRIMARY KEY,
+    BookID INT NOT NULL,
+    MemberID INT NOT NULL,
+    LoanDate DATE NOT NULL,
+    ReturnDate DATE,
+    FOREIGN KEY (BookID) REFERENCES Books(BookID) ON DELETE CASCADE,
+    FOREIGN KEY (MemberID) REFERENCES Members(MemberID) ON DELETE CASCADE
+);
+-- Create database
+CREATE DATABASE IF NOT EXISTS LibraryDB;
+USE LibraryDB;
+
+-- Authors table
+CREATE TABLE IF NOT EXISTS Authors (
+    AuthorID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Bio TEXT
+);
+
+-- Books table
+CREATE TABLE IF NOT EXISTS Books (
+    BookID INT AUTO_INCREMENT PRIMARY KEY,
+    Title VARCHAR(200) NOT NULL,
+    ISBN VARCHAR(20) UNIQUE NOT NULL,
+    PublishedYear YEAR
+);
+
+-- BookAuthors table (Many-to-Many relationship)
+CREATE TABLE IF NOT EXISTS BookAuthors (
+    BookID INT,
+    AuthorID INT,
+    PRIMARY KEY (BookID, AuthorID),
+    FOREIGN KEY (BookID) REFERENCES Books(BookID) ON DELETE CASCADE,
+    FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID) ON DELETE CASCADE
+);
+
+-- Members table
+CREATE TABLE IF NOT EXISTS Members (
+    MemberID INT AUTO_INCREMENT PRIMARY KEY,
+    FullName VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    JoinDate DATE NOT NULL
+);
+
+-- Loans table
+CREATE TABLE IF NOT EXISTS Loans (
+    LoanID INT AUTO_INCREMENT PRIMARY KEY,
+    BookID INT NOT NULL,
+    MemberID INT NOT NULL,
+    LoanDate DATE NOT NULL,
+    ReturnDate DATE,
+    FOREIGN KEY (BookID) REFERENCES Books(BookID) ON DELETE CASCADE,
+    FOREIGN KEY (MemberID) REFERENCES Members(MemberID) ON DELETE CASCADE
+);
+CREATE TABLE IF NOT EXISTS BookAuthors (
+    BookID INT,
+    AuthorID INT,
+    PRIMARY KEY (BookID, AuthorID),
+    FOREIGN KEY (BookID) REFERENCES Books(BookID) ON DELETE CASCADE,
+    FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID) ON DELETE CASCADE
+);
+
+-- Members table
+CREATE TABLE IF NOT EXISTS Members (
+    MemberID INT AUTO_INCREMENT PRIMARY KEY,
+    FullName VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    JoinDate DATE NOT NULL
+);
+
+-- Loans table
+CREATE TABLE IF NOT EXISTS Loans (
+    LoanID INT AUTO_INCREMENT PRIMARY KEY,
+    BookID INT NOT NULL,
+    MemberID INT NOT NULL,
+    LoanDate DATE NOT NULL,
+    ReturnDate DATE,
+    FOREIGN KEY (BookID) REFERENCES Books(BookID) ON DELETE CASCADE,
+    FOREIGN KEY (MemberID) REFERENCES Members(MemberID) ON DELETE CASCADE
+);
